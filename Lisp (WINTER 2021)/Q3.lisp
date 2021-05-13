@@ -1,0 +1,11 @@
+(defun clean(lst)
+    (cond ((null lst) '())
+        ((listp (car lst))(clean(append (clean (car lst)) (cdr lst))))
+        ((numberp (car lst))(clean(cdr lst)))
+        ((member (car lst) (clean(cdr lst)))(clean(cdr lst)))
+        (t (cons (car lst)(clean (cdr lst))))
+    )
+)
+
+(print (clean '((z f) (b a 5 3.5) 6 (7) (a) c)))
+(print (clean '((n) 2 (6 h 7.8) (w f) (n) (c) n)))
